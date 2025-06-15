@@ -1,15 +1,15 @@
 // Configurações Spotify
-const CLIENT_ID = '97c7bdaae3324bb3bad0b4cd3d48be8c'; // Troque aqui pelo seu Client ID do Spotify
-const REDIRECT_URI = 'https://actofy.vercel.app/';
+const CLIENT_ID = '97c7bdaae3324bb3bad0b4cd3d48be8c';  // Troque aqui pelo seu Client ID real
+const REDIRECT_URI = 'https://pietrostartgames.vercel.app/';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-const RESPONSE_TYPE = 'token';  // Implicit Grant Flow
+const RESPONSE_TYPE = 'token';
 const SCOPES = [
   'user-read-private',
   'playlist-read-private',
   'user-read-email'
-].join('%20');
+].join(' ');
 
-// Elementos do DOM
+// DOM Elements
 const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const userSection = document.getElementById('user-section');
@@ -19,7 +19,7 @@ const playlistsSection = document.getElementById('playlists');
 
 let accessToken = null;
 
-// Pega o token do hash da URL após login
+// Pega token do hash da URL
 function getTokenFromUrl() {
   return window.location.hash
     .substring(1)
@@ -43,7 +43,7 @@ function getToken() {
   return localStorage.getItem('spotify_token');
 }
 
-// Logout - remove token e recarrega
+// Logout
 function logout() {
   localStorage.removeItem('spotify_token');
   window.location.href = REDIRECT_URI;
@@ -58,7 +58,7 @@ function updateUserInfo(user) {
   logoutBtn.style.display = 'inline-block';
 }
 
-// Busca dados do perfil do usuário
+// Busca perfil do usuário
 async function fetchUserProfile(token) {
   const res = await fetch('https://api.spotify.com/v1/me', {
     headers: { Authorization: `Bearer ${token}` }
@@ -75,11 +75,9 @@ async function fetchUserPlaylists(token) {
   const res = await fetch('https://api.spotify.com/v1/me/playlists', {
     headers: { Authorization: `Bearer ${token}` }
   });
-  if (!res.ok) {
-    return;
-  }
-  const data = await res.json();
+  if (!res.ok) return;
 
+  const data = await res.json();
   playlistsSection.innerHTML = '';
 
   if (data.items) {
@@ -95,18 +93,18 @@ async function fetchUserPlaylists(token) {
   }
 }
 
-// Botão login - redireciona para autorização Spotify
+// Login button click
 loginBtn.addEventListener('click', () => {
-  const url = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
+  const loginUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
     REDIRECT_URI
-  )}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}&show_dialog=true`;
-  window.location = url;
+  )}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}&show_dialog=true`;
+  window.location = loginUrl;
 });
 
-// Botão logout
+// Logout button click
 logoutBtn.addEventListener('click', logout);
 
-// Ao carregar a página
+// On page load
 window.onload = async () => {
   const hash = getTokenFromUrl();
 
