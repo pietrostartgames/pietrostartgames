@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,18 +8,48 @@
 </head>
 <body>
   <div id="app">
-    <h1>Actofy</h1>
-    <button id="login-btn">Login com Spotify</button>
+    <nav id="sidebar">
+      <h2>Actofy</h2>
+      <button id="login-btn" class="btn-primary">Login com Spotify</button>
+      <div id="user-section" style="display:none;">
+        <img id="user-img" src="" alt="Usuário" />
+        <span id="username"></span>
+        <button id="logout-btn" class="btn-logout">Logout</button>
+      </div>
+      <ul id="menu">
+        <li class="menu-item active">Início</li>
+        <li class="menu-item">Buscar</li>
+        <li class="menu-item">Sua Biblioteca</li>
+      </ul>
+    </nav>
 
-    <div id="user-info" style="display:none;">
-      <p>Olá, <span id="username"></span></p>
-      <button id="logout-btn">Logout</button>
-    </div>
+    <main id="main-content">
+      <header>
+        <h1>Suas playlists</h1>
+      </header>
 
-    <div id="player" style="display:none;">
-      <h2>Suas playlists</h2>
-      <ul id="playlists"></ul>
-    </div>
+      <section id="playlists"></section>
+
+      <section id="search-section" style="display:none;">
+        <input type="text" id="search-input" placeholder="Buscar músicas, artistas..." />
+        <div id="search-results"></div>
+      </section>
+    </main>
+
+    <footer id="player" style="display:none;">
+      <div id="now-playing">
+        <img id="track-img" src="" alt="Capa da música" />
+        <div>
+          <div id="track-name"></div>
+          <div id="track-artist"></div>
+        </div>
+      </div>
+      <div id="controls">
+        <button id="prev-btn">⏮</button>
+        <button id="play-btn">▶️</button>
+        <button id="next-btn">⏭</button>
+      </div>
+    </footer>
   </div>
 
   <script src="script.js"></script>
