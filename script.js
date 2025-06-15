@@ -1,4 +1,3 @@
-// Configurações Spotify
 const CLIENT_ID = '97c7bdaae3324bb3bad0b4cd3d48be8c';
 const REDIRECT_URI = 'https://actofy.vercel.app/';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
@@ -9,17 +8,13 @@ const SCOPES = [
   'user-read-email'
 ].join(' ');
 
-// Elementos do DOM
 const loginBtn = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout-btn');
-const userSection = document.getElementById('user-section');
+const userInfo = document.getElementById('user-info');
 const usernameSpan = document.getElementById('username');
 const userImg = document.getElementById('user-img');
 const playlistsSection = document.getElementById('playlists');
 
-let accessToken = null;
-
-// Pega token do hash da URL após login
 function getTokenFromUrl() {
   return window.location.hash
     .substring(1)
@@ -33,32 +28,27 @@ function getTokenFromUrl() {
     }, {});
 }
 
-// Salva token no localStorage
 function setToken(token) {
   localStorage.setItem('spotify_token', token);
 }
 
-// Pega token do localStorage
 function getToken() {
   return localStorage.getItem('spotify_token');
 }
 
-// Logout - remove token e recarrega página
 function logout() {
   localStorage.removeItem('spotify_token');
   window.location.href = REDIRECT_URI;
 }
 
-// Atualiza UI com dados do usuário
 function updateUserInfo(user) {
   usernameSpan.textContent = user.display_name || user.id;
   userImg.src = user.images?.[0]?.url || 'https://via.placeholder.com/40';
-  userSection.style.display = 'flex';
+  userInfo.style.display = 'flex';
   loginBtn.style.display = 'none';
   logoutBtn.style.display = 'inline-block';
 }
 
-// Busca dados do perfil do usuário
 async function fetchUserProfile(token) {
   const res = await fetch('https://api.spotify.com/v1/me', {
     headers: { Authorization: `Bearer ${token}` }
@@ -70,7 +60,6 @@ async function fetchUserProfile(token) {
   return res.json();
 }
 
-// Busca playlists do usuário
 async function fetchUserPlaylists(token) {
   const res = await fetch('https://api.spotify.com/v1/me/playlists', {
     headers: { Authorization: `Bearer ${token}` }
@@ -93,7 +82,6 @@ async function fetchUserPlaylists(token) {
   }
 }
 
-// Evento click no botão login
 loginBtn.addEventListener('click', () => {
   const loginUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
     REDIRECT_URI
@@ -101,10 +89,8 @@ loginBtn.addEventListener('click', () => {
   window.location = loginUrl;
 });
 
-// Evento click no botão logout
 logoutBtn.addEventListener('click', logout);
 
-// Ao carregar a página
 window.onload = async () => {
   const hash = getTokenFromUrl();
 
@@ -113,7 +99,7 @@ window.onload = async () => {
     window.location.hash = '';
   }
 
-  accessToken = getToken();
+  const accessToken = getToken();
 
   if (accessToken) {
     const user = await fetchUserProfile(accessToken);

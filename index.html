@@ -3,23 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Actofy - Spotify Blue</title>
+  <title>Actofy</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Actofy</h1>
-    <button id="login-btn">Login com Spotify</button>
-    <button id="logout-btn" style="display:none;">Logout</button>
-  </header>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="logo">Actofy</div>
+      <nav>
+        <a href="#" id="home-link" class="active">Início</a>
+        <a href="#" id="search-link">Buscar</a>
+        <a href="#" id="library-link">Sua Biblioteca</a>
+      </nav>
+    </aside>
+    <main id="main-content">
+      <header>
+        <button id="login-btn">Login com Spotify</button>
+        <button id="logout-btn" style="display:none;">Logout</button>
+        <div id="user-info" style="display:none;">
+          <img id="user-img" alt="User" />
+          <span id="username"></span>
+        </div>
+      </header>
 
-  <section id="user-section" style="display:none;">
-    <img id="user-img" src="" alt="User" />
-    <span id="username"></span>
-  </section>
-
-  <section id="playlists"></section>
-
+      <section id="playlists"></section>
+    </main>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

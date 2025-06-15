@@ -1,37 +1,76 @@
-body {
-  margin: 0;
+* {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #0a2a52; /* azul escuro */
-  color: #fff;
+}
+
+body, html, #app {
+  height: 100%;
+  background-color: #040f1a; /* azul muito escuro */
+  color: white;
+}
+
+#app {
+  display: flex;
+}
+
+#sidebar {
+  width: 220px;
+  background: #052a5f; /* azul */
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+}
+
+#sidebar .logo {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: #1db954; /* verde Spotify para contraste */
+  user-select: none;
+}
+
+#sidebar nav a {
+  color: #b0c4de;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+#sidebar nav a.active,
+#sidebar nav a:hover {
+  background-color: #1db954;
+  color: white;
+}
+
+#main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
 }
 
 header {
-  width: 100%;
-  background-color: #004b9b; /* azul médio */
-  padding: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-}
-
-header h1 {
-  margin: 0;
-  font-weight: 700;
-  font-size: 1.5rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #222;
 }
 
 button {
-  background-color: #1db954; /* verde Spotify */
+  background-color: #1db954;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
+  padding: 0.5rem 1.3rem;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   transition: background-color 0.3s;
 }
 
@@ -39,48 +78,52 @@ button:hover {
   background-color: #17a44c;
 }
 
-#user-section {
-  margin: 2rem 0;
+#user-info {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
 }
 
 #user-img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1db954;
 }
 
 #playlists {
-  width: 90%;
-  max-width: 900px;
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
   gap: 1rem;
 }
 
 .playlist-card {
-  background-color: #01395c;
+  background: #0a2e73;
   border-radius: 8px;
-  padding: 0.5rem;
-  text-align: center;
+  overflow: hidden;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
 .playlist-card:hover {
-  background-color: #025d9c;
+  background: #1362b2;
 }
 
 .playlist-card img {
   width: 100%;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .playlist-name {
-  font-size: 0.9rem;
   font-weight: 600;
-  color: #ddd;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #ddeeff;
 }
