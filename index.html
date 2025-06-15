@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Actofy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Actofy - Spotify Blue</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
+    <h1>Actofy</h1>
     <button id="login-btn">Login com Spotify</button>
     <button id="logout-btn" style="display:none;">Logout</button>
-
-    <div id="user-section" style="display:none;">
-      <img id="user-img" src="" alt="Foto do usuário" width="40" height="40" />
-      <span id="username"></span>
-    </div>
   </header>
 
-  <main>
-    <section id="playlists"></section>
-  </main>
+  <section id="user-section" style="display:none;">
+    <img id="user-img" src="" alt="User" />
+    <span id="username"></span>
+  </section>
+
+  <section id="playlists"></section>
 
   <script src="script.js"></script>
 </body>

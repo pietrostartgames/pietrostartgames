@@ -1,71 +1,86 @@
 body {
-  background-color: #0a2a5e; /* Azul escuro */
-  color: white;
+  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0; padding: 0;
+  background-color: #0a2a52; /* azul escuro */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
 header {
+  width: 100%;
+  background-color: #004b9b; /* azul médio */
+  padding: 1rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 15px;
-  background: #004080;
+}
+
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 button {
-  background-color: #1db954; /* Verde Spotify */
+  background-color: #1db954; /* verde Spotify */
   border: none;
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
   color: white;
-  border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #1ed760;
+  background-color: #17a44c;
 }
 
 #user-section {
+  margin: 2rem 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: auto;
+  gap: 1rem;
 }
 
 #user-img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
 #playlists {
-  padding: 20px;
+  width: 90%;
+  max-width: 900px;
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
-  gap: 20px;
+  gap: 1rem;
 }
 
 .playlist-card {
-  background-color: #003366;
+  background-color: #01395c;
   border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
+  padding: 0.5rem;
   text-align: center;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .playlist-card:hover {
-  background-color: #00509e;
+  background-color: #025d9c;
 }
 
 .playlist-card img {
   width: 100%;
   border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .playlist-name {
-  margin-top: 8px;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 600;
+  color: #ddd;
 }
